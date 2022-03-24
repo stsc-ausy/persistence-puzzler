@@ -20,7 +20,7 @@ public class DetailHandler {
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    protected void modifyDetails(Master one) {
+    public void modifyDetails(Master one) {
         List<Detail> onesDetails = detailRepository.findByMasterId(one.getObjectId());
         LOGGER.info("{} running transactions", pool.getActiveConnections());
         for (Detail detail : onesDetails) {
