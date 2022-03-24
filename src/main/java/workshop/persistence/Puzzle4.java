@@ -17,7 +17,11 @@ public class Puzzle4 extends EmptyPuzzle {
     @Transactional
     public void modifyData() {
         Master one = masterRepository.findByReference("Two");
-        detailHandler.modifyDetails(one);
+        try {
+            detailHandler.modifyDetails(one);
+        } catch (PuzzleException e) {
+            LOGGER.error("Failed to update details {}", e.getMessage());
+        }
         one.setStatus(Status.MODIFIED);
     }
 
