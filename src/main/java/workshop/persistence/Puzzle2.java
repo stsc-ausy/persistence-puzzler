@@ -14,9 +14,12 @@ public class Puzzle2 extends EmptyPuzzle {
     public void modifyData() {
         Master one = masterRepository.findByReference("One");
         List<Detail> onesDetails = detailRepository.findByMasterId(one.getObjectId());
+        LOGGER.info("{} running transactions", pool.getActiveConnections());
         for (Detail detail : onesDetails) {
             detail.setModCounter(detail.getModCounter() + 1);
+            detailRepository.save(detail);
         }
         one.setStatus(Status.MODIFIED);
+        masterRepository.save(one);
     }
 }
