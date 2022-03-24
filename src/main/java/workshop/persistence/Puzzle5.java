@@ -3,11 +3,11 @@ package workshop.persistence;
 import com.zaxxer.hikari.pool.HikariPool;
 import org.springframework.transaction.annotation.Transactional;
 
-public class Puzzle4 extends EmptyPuzzle {
+public class Puzzle5 extends EmptyPuzzle {
 
     private final DetailHandler detailHandler;
 
-    public Puzzle4(MasterRepository masterRepository, DetailRepository detailRepository,
+    public Puzzle5(MasterRepository masterRepository, DetailRepository detailRepository,
             HikariPool pool, DetailHandler detailHandler) {
         super(masterRepository, detailRepository, pool);
         this.detailHandler = detailHandler;
@@ -22,7 +22,6 @@ public class Puzzle4 extends EmptyPuzzle {
         } catch (PuzzleException e) {
             LOGGER.error("Failed to update details {}", e.getMessage());
         }
-        one.setStatus(Status.MODIFIED);
     }
 
 }

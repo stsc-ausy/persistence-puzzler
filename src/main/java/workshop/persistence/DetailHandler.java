@@ -21,6 +21,7 @@ public class DetailHandler {
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void modifyDetails(Master one) {
+        one.setStatus(Status.MODIFIED);
         if ("Two".equals(one.getReference())) {
             throw new PuzzleException("Wrong master " + one);
         }
