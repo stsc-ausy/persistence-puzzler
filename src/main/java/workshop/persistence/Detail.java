@@ -41,4 +41,13 @@ public class Detail {
     public void setModCounter(Integer modCounter) {
         this.modCounter = modCounter;
     }
+
+    @Override
+    public String toString() {
+        return "Detail{" +
+                "objectId=" + objectId +
+                ", masterId=" + masterId +
+                ", modCounter=" + modCounter +
+                '}';
+    }
 }

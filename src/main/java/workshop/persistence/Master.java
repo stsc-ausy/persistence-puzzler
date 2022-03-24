@@ -39,4 +39,13 @@ public class Master {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Master{" +
+                "objectId=" + objectId +
+                ", reference='" + reference + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }
