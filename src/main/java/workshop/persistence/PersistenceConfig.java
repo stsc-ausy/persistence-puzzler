@@ -19,8 +19,9 @@ class PersistenceConfig {
     }
 
     @Bean
-    Puzzle action(MasterRepository masterRepository, DetailRepository detailRepository, HikariPool pool) {
-        return new Puzzle3(masterRepository, detailRepository, pool);
+    Puzzle action(MasterRepository masterRepository, DetailRepository detailRepository,
+            HikariPool pool, DetailHandler handler) {
+        return new Puzzle3(masterRepository, detailRepository, pool, handler);
     }
 
     @Bean
@@ -28,4 +29,8 @@ class PersistenceConfig {
         return (HikariPool) new DirectFieldAccessor(dataSource).getPropertyValue("pool");
     }
 
+    @Bean
+    DetailHandler detailHandler(DetailRepository repository, HikariPool pool) {
+        return new DetailHandler(repository, pool);
+    }
 }
