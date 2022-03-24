@@ -21,7 +21,7 @@ class PersistenceConfig {
     @Bean
     Puzzle action(MasterRepository masterRepository, DetailRepository detailRepository,
             HikariPool pool, DetailHandler handler) {
-        return new Puzzle3(masterRepository, detailRepository, pool, handler);
+        return new Puzzle4(masterRepository, detailRepository, pool, handler);
     }
 
     @Bean

@@ -21,6 +21,9 @@ public class DetailHandler {
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void modifyDetails(Master one) {
+        if ("Two".equals(one.getReference())) {
+            throw new PuzzleException("Wrong master " + one);
+        }
         List<Detail> onesDetails = detailRepository.findByMasterId(one.getObjectId());
         LOGGER.info("{} running transactions", pool.getActiveConnections());
         for (Detail detail : onesDetails) {
