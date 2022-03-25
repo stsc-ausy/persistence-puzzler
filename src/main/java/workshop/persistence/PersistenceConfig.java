@@ -30,7 +30,7 @@ class PersistenceConfig {
     }
 
     @Bean
-    DetailHandler detailHandler(DetailRepository repository, HikariPool pool) {
-        return new DetailHandler(repository, pool);
+    DetailHandler detailHandler(MasterRepository masterRepository, DetailRepository detailRepository, HikariPool pool) {
+        return new DetailHandler(masterRepository, detailRepository, pool);
     }
 }

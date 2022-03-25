@@ -18,7 +18,7 @@ public class Puzzle5 extends EmptyPuzzle {
     public void modifyData() {
         Master one = masterRepository.findByReference("Two");
         try {
-            detailHandler.modifyDetails(one);
+            detailHandler.modifyDetails(one.getObjectId());
         } catch (PuzzleException e) {
             LOGGER.error("Failed to update details {}", e.getMessage());
         }

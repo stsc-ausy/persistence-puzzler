@@ -11,16 +11,19 @@ import org.springframework.transaction.annotation.Transactional;
 public class DetailHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DetailHandler.class);
+    private final MasterRepository masterRepository;
     private DetailRepository detailRepository;
     private HikariPool pool;
 
-    public DetailHandler(DetailRepository detailRepository, HikariPool pool) {
+    public DetailHandler(MasterRepository masterRepository, DetailRepository detailRepository, HikariPool pool) {
+        this.masterRepository = masterRepository;
         this.detailRepository = detailRepository;
         this.pool = pool;
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void modifyDetails(Master one) {
+    public void modifyDetails(Integer masterId) {
+        Master one = masterRepository.findById(masterId).get();
         one.setStatus(Status.MODIFIED);
         if ("Two".equals(one.getReference())) {
             throw new PuzzleException("Wrong master " + one);
